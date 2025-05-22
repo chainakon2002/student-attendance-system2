@@ -135,51 +135,56 @@ useEffect(() => {
 
       {Object.entries(studentsByGrade).map(([grade, stuList]) => (
         <div key={grade} className="mb-8">
-          <h2 className="text-2xl font-semibold mb-3">ชั้นเรียน {grade}</h2>
-          <table className="w-full table-auto border-collapse border">
-            <thead>
-              <tr className="bg-blue-100">
-                <th className="border px-3 py-2">ชื่อนักเรียน</th>
-                <th className="border px-3 py-2">ชั้น</th>
-                <th className="border px-3 py-2">ยอดสะสม (บาท)</th>
-                <th className="border px-3 py-2">จัดการ</th>
-              </tr>
-            </thead>
-            <tbody>
-              {stuList.map(({ key, name, grade }) => (
-                <tr key={key} className="hover:bg-blue-50">
-                  <td className="border px-3 py-2">{name}</td>
-                  <td className="border px-3 py-2 text-center">{grade}</td>
-                  <td className="border px-3 py-2 text-center">
-                    {studentTotals[key] || 0}
-                  </td>
-                  <td className="border px-3 py-2 text-center space-x-2">
-                    <button
-                      onClick={() => {
-                        setSelectedStudentKey(key);
-                        setModalType('deposit');
-                        setAmount('');
-                        setNote('');
-                      }}
-                      className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
-                    >
-                      ฝากเงิน
-                    </button>
-                    <button
-                      onClick={() => {
-                        setSelectedStudentKey(key);
-                        setModalType('history');
-                      }}
-                      className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
-                    >
-                      ดูรายละเอียด
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+  <h2 className="text-2xl font-semibold mb-3">ชั้นเรียน {grade}</h2>
+
+  {/* เพิ่ม div ครอบตาราง พร้อม rounded และ overflow-hidden */}
+  <div className="overflow-hidden rounded-xl shadow ring-1 ring-gray-200">
+    <table className="w-full table-auto border-collapse">
+      <thead>
+        <tr className="bg-blue-100">
+          <th className="border px-3 py-2">ชื่อนักเรียน</th>
+          <th className="border px-3 py-2">ชั้น</th>
+          <th className="border px-3 py-2">ยอดสะสม (บาท)</th>
+          <th className="border px-3 py-2">จัดการ</th>
+        </tr>
+      </thead>
+      <tbody>
+        {stuList.map(({ key, name, grade }) => (
+          <tr key={key} className="hover:bg-blue-50">
+            <td className="border px-3 py-2">{name}</td>
+            <td className="border px-3 py-2 text-center">{grade}</td>
+            <td className="border px-3 py-2 text-center">{studentTotals[key] || 0}</td>
+            <td className="border px-3 py-2 text-center space-x-2">
+              {/* ปุ่มฝากเงิน */}
+              <button
+                onClick={() => {
+                  setSelectedStudentKey(key);
+                  setModalType('deposit');
+                  setAmount('');
+                  setNote('');
+                }}
+                className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+              >
+                ฝากเงิน
+              </button>
+              {/* ปุ่มดูรายละเอียด */}
+              <button
+                onClick={() => {
+                  setSelectedStudentKey(key);
+                  setModalType('history');
+                }}
+                className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
+              >
+                ดูรายละเอียด
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
       ))}
 
       {/* Modal ฝากเงิน */}

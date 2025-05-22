@@ -177,7 +177,7 @@ useEffect(() => {
         {/* ซ้าย */}
         <div className="flex flex-col gap-6 flex-1">
           {/* รายสัปดาห์ */}
-          <div className="border rounded-lg p-4 bg-white shadow" style={{ minHeight: 280 }}>
+          <div className="border rounded-2xl p-4 bg-white shadow" style={{ minHeight: 280 }}>
             <h2 className="text-xl font-semibold mb-3">รายสัปดาห์ (7 วันล่าสุด)</h2>
             {weeklyChartData.length === 0 ? (
               <p>ยังไม่มีข้อมูลรายสัปดาห์</p>
@@ -202,7 +202,7 @@ useEffect(() => {
           </div>
 
           {/* ภาคเรียน */}
-          <div className="border rounded-lg p-4 bg-white shadow" style={{ minHeight: 280 }}>
+          <div className="border rounded-2xl p-4 bg-white shadow" style={{ minHeight: 280 }}>
             <h2 className="text-xl font-semibold mb-3">รายภาคเรียน ({latestTerm.label})</h2>
             {termChartData.length === 0 ? (
               <p>ยังไม่มีข้อมูลภาคเรียน</p>
@@ -236,7 +236,7 @@ useEffect(() => {
         </div>
 
         {/* ขวา */}
-        <div className="border rounded-lg p-4 bg-white shadow flex-1" style={{ minHeight: 560 }}>
+        <div className="border rounded-2xl p-4 bg-white shadow flex-1" style={{ minHeight: 560 }}>
           <h2 className="text-xl font-semibold mb-3">รายเดือน (ย้อนหลัง)</h2>
           {monthlyChartData.length === 0 ? (
             <p>ยังไม่มีข้อมูลรายเดือน</p>
