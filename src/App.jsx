@@ -1,0 +1,73 @@
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import CheckIn from './pages/CheckIn';
+import StudentManager from './pages/StudentManager';
+import CheckInHistory from './pages/CheckInHistory';
+import Dashboard from './pages/Dashboard';
+import EditSchedule from './pages/EditSchedule';
+import DepositPage from './pages/DepositManager';
+import {
+  ClipboardList,
+  Users,
+  Clock,
+  BarChart2,
+  CalendarCheck,
+  Wallet,
+} from "lucide-react";
+
+function App() {
+  const navItems = [
+    { to: "/", label: "เช็คชื่อ", icon: ClipboardList },
+    { to: "/students", label: "นักเรียน", icon: Users },
+    { to: "/history", label: "ประวัติ", icon: Clock },
+    { to: "/dashboard", label: "สถิติ", icon: BarChart2 },
+    { to: "/edit-schedule", label: "แก้ไขตาราง", icon: CalendarCheck },
+    { to: "/deposit", label: "ฝากเงิน", icon: Wallet },
+  ];
+  return (
+    <Router>
+      <div className="min-h-screen bg-blue-50 font-sans">
+       {/* Navbar */}
+ <nav className="bg-gradient-to-r from-blue-700 to-blue-500 text-white py-4 shadow-lg">
+      <div className="container mx-auto flex flex-wrap items-center justify-between px-4">
+        <h1 className="text-2xl font-bold tracking-wide">ระบบเช็คชื่อนักเรียน</h1>
+        <div className="flex flex-wrap gap-4 text-sm md:text-base items-center">
+          {navItems.map(({ to, label, icon: Icon }) => (
+            <Link
+              key={to}
+              to={to}
+              className="relative group font-medium transition-all duration-300 flex items-center gap-1"
+            >
+              <Icon className="w-5 h-5" />
+              <span className="group-hover:text-blue-100 transition">{label}</span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </nav>
+
+
+        {/* Routes */}
+        <div className="container mx-auto p-4">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/checkin/:day/:period" element={<CheckIn />} />
+            <Route path="/students" element={<StudentManager />} />
+            <Route path="/history" element={<CheckInHistory />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/edit-schedule" element={<EditSchedule />} />
+            <Route path="/deposit" element={<DepositPage />} />
+          </Routes>
+        </div>
+
+        {/* Footer */}
+        <footer className="text-center text-xs text-gray-600 py-4">
+          โรงเรียนบ้านท่าหนามแก้วสวนกล้วย | ปีการศึกษา 2568-2569
+        </footer>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
