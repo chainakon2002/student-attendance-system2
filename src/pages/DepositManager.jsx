@@ -114,8 +114,21 @@ export default function DepositPage() {
     return acc;
   }, {});
 
+
+  const [isVisible, setIsVisible] = useState(false);
+
+useEffect(() => {
+  const timer = setTimeout(() => setIsVisible(true), 100); // รอ 100ms ก่อนโชว์
+  return () => clearTimeout(timer);
+}, []);
+
   return (
-    <div className="p-4 max-w-6xl mx-auto">
+    <div
+  className={`p-4 max-w-6xl mx-auto transition-opacity transition-transform duration-700 ease-out ${
+    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+  }`}
+>
+
       <h1 className="text-3xl font-bold text-blue-600 mb-6">ฝากเงินนักเรียน</h1>
 
       {Object.keys(studentsByGrade).length === 0 && <p>ไม่มีข้อมูลนักเรียน</p>}

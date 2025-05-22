@@ -67,8 +67,22 @@ export default function StudentManager() {
     }
   };
 
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 100); // รอ 100ms ก่อนโชว์
+    return () => clearTimeout(timer);
+  }, []);
+
+
+
+
   return (
-    <div className="p-4">
+    <div
+  className={`p-4 transition-opacity transition-transform duration-700 ease-out ${
+    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+  }`}
+>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold text-blue-600">จัดการนักเรียน</h1>
         <button

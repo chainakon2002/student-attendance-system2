@@ -34,24 +34,43 @@ export default function Home() {
     });
   }, [term]);
 
+
+
+  const [isVisible, setIsVisible] = useState(false);
+
+useEffect(() => {
+  const timer = setTimeout(() => setIsVisible(true), 100); // รอ 100ms ก่อนโชว์
+  return () => clearTimeout(timer);
+}, []);
+
   return (
-    <div className="p-4">
+  <div
+  className={`p-4 transition-all duration-700 ease-out transform ${
+    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+  }`}
+>
       <h1 className="text-3xl font-bold text-center text-blue-600">ระบบเช็คชื่อนักเรียน</h1>
       <h2 className="text-xl text-center text-gray-600">โรงเรียนบ้านท่าหนามแก้วสวนกล้วย</h2>
 
      <div className="mt-4 flex justify-end pr-4">
-  <select
-    value={term}
-    onChange={(e) => setTerm(e.target.value)}
-    className="px-4 py-2 rounded-full shadow-md border border-gray-300 bg-white hover:bg-blue-50 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-  >
-    {termOptions.map((t) => (
-      <option key={t.value} value={t.value}>
-        {t.label}
-      </option>
-    ))}
-  </select>
+  <div className="relative">
+    <select
+      value={term}
+      onChange={(e) => setTerm(e.target.value)}
+      className="appearance-none px-5 py-2 rounded-full shadow-md border border-gray-300 bg-white hover:bg-blue-50 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
+    >
+      {termOptions.map((t) => (
+        <option key={t.value} value={t.value}>
+          {t.label}
+        </option>
+      ))}
+    </select>
+    <div className="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+      ▼
+    </div>
+  </div>
 </div>
+
 
 
 <div className="overflow-auto mt-6 border rounded-3xl shadow-md">

@@ -30,6 +30,9 @@ const terms = [
   { value: "1_2569", label: "ภาคเรียน 1/2569" },
 ];
 
+
+
+
 export default function Dashboard() {
   const [stats, setStats] = useState({});
   const [weeklyChartData, setWeeklyChartData] = useState([]);
@@ -152,8 +155,23 @@ export default function Dashboard() {
     });
   }, []);
 
+
+const [isVisible, setIsVisible] = useState(false);
+
+useEffect(() => {
+  const timer = setTimeout(() => setIsVisible(true), 100); // รอ 100ms ก่อนโชว์
+  return () => clearTimeout(timer);
+}, []);
+
+
+  
   return (
-    <div className="p-4 max-w-[1100px] mx-auto">
+    <div
+  className={`p-4 max-w-[1100px] mx-auto transition-opacity transition-transform duration-700 ease-out ${
+    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+  }`}
+>
+
       <h1 className="text-2xl font-bold text-blue-600 mb-6">แดชบอร์ดสถิติ</h1>
       <div className="flex gap-6">
         {/* ซ้าย */}
