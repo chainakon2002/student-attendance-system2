@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { ref, onValue, set } from 'firebase/database';
+import Swal from 'sweetalert2'; 
 import { db } from '../firebase';
 
 const CheckIn = () => {
   const { day, period } = useParams();
   const location = useLocation();
+  const navigate = useNavigate(); 
   const subject = location.state?.subject || '-';
   const className = location.state?.className || '-';
 
@@ -52,14 +54,21 @@ const getLocalDateString = () => {
   return `${year}-${month}-${day}`;
 };
 
-  const handleSave = () => {
-    const date = getLocalDateString();
-    const refPath = `checkins/${date}/${day}/period${period}`;
-    set(ref(db, refPath), statuses).then(() => {
-      setSaved(true);
-      setTimeout(() => setSaved(false), 2000);
+const handleSave = () => {
+  const date = getLocalDateString();
+  const refPath = `checkins/${date}/${day}/period${period}`;
+  set(ref(db, refPath), statuses).then(() => {
+    Swal.fire({
+      icon: 'success',
+      title: 'บันทึกเรียบร้อยแล้ว!',
+      showConfirmButton: false,
+      timer: 1500
+    }).then(() => {
+      navigate('/history'); // ✅ ไปหน้า history หลัง popup หาย
     });
-  };
+  });
+};
+
 
   return (
     <div className="p-4 max-w-5xl mx-auto">
