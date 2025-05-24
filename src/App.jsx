@@ -100,7 +100,7 @@ if (loading) {
 
         {/* Footer */}
         <footer className="text-center text-xs text-gray-600 py-4">
-          โรงเรียนบ้านท่าหนามแก้วสวนกล้วย | ปีการศึกษา 2568-2569
+          ปีการศึกษา 2568
         </footer>
       </div>
     </Router>
