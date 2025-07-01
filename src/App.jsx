@@ -127,6 +127,7 @@ function App() {
          {/* Footer */}
         <footer className="text-center text-xs text-gray-600 py-4">
           ปีการศึกษา 1/2568
+          
         </footer>
       </div>
     </Router>

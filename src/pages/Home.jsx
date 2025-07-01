@@ -49,7 +49,11 @@ useEffect(() => {
     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
   }`}
 >
+<<<<<<< HEAD
       <h1 className="text-3xl font-bold text-center text-blue-600">เช็คชื่อนักเรียน</h1>
+=======
+      <h1 className="text-3xl font-bold text-center text-blue-600">ระบบเช็คชื่อนักเรียน</h1>
+>>>>>>> 0a4971077180c63d6c44301b8651f9dcc725fbf5
       
 
      <div className="mt-4 flex justify-end pr-4">
