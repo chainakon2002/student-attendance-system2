@@ -49,8 +49,8 @@ useEffect(() => {
     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
   }`}
 >
-      <h1 className="text-3xl font-bold text-center text-blue-600">ระบบเช็คชื่อนักเรียน</h1>
-      <h2 className="text-xl text-center text-gray-600">โรงเรียนบ้านท่าหนามแก้วสวนกล้วย</h2>
+      <h1 className="text-3xl font-bold text-center text-blue-600">เช็คชื่อนักเรียน</h1>
+      
 
      <div className="mt-4 flex justify-end pr-4">
   <div className="relative">
